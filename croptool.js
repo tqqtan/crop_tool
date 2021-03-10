@@ -22,7 +22,7 @@
 			name: 'img',					//文件名字
 			quality: 1						//压缩质量
 		};
-		this.opt = Object.assign({}, this.defaults, options || {});
+		this.opt = {...this.defaults, ...options};
 		this.dragBox = `
 			<div class="${options.dragBoxClass}">
 				<div action="rightDown" class="rRightDown"></div>
@@ -376,16 +376,16 @@
 			};
 		},
 		rightDown(e) {
-			return Object.assign({},this.right(e), this.down(e));
+			return {...this.right(e), ...this.down(e)};
 		},
 		leftDown(e) {
-			return Object.assign({},this.left(e), this.down(e));
+			return {...this.left(e), ...this.down(e)};
 		},
 		rightUp(e) {
-			return Object.assign({},this.right(e), this.up(e));
+			return {...this.right(e), ...this.up(e)};
 		},
 		leftUp(e) {
-			return Object.assign({},this.left(e), this.up(e));
+			return {...this.left(e), ...this.up(e)};
 		},
 		cancel(){
 			let container = this.getElement('#clipping-container');
