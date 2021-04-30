@@ -23,6 +23,7 @@
 			quality: 1						//压缩质量
 		};
 		this.opt = {...this.defaults, ...options};
+		this.style_number = 1;
 		this.dragBox = `
 			<div class="${options.dragBoxClass}">
 				<div action="rightDown" class="rRightDown"></div>
@@ -94,14 +95,17 @@
 		},
 		styleInject(){
 			if (!this.css || typeof document === 'undefined')  return false;
-			var head = document.head || document.getElementsByTagName('head')[0];
-			var style = document.createElement('style');
-			head.appendChild(style);
-			if (style.styleSheet) {
-				style.styleSheet.cssText = this.css;
-			} else {
-				style.appendChild(document.createTextNode(this.css));
+			if(this.style_number == 1){
+				var head = document.head || document.getElementsByTagName('head')[0];
+				var style = document.createElement('style');
+				head.appendChild(style);
+				if (style.styleSheet) {
+					style.styleSheet.cssText = this.css;
+				} else {
+					style.appendChild(document.createTextNode(this.css));
+				}
 			}
+			this.style_number++;
 		},
 		getElement(ele){
 			return document.querySelector(ele);
@@ -137,6 +141,11 @@
 				}else if( w < h ){
 					_this.ele.style.width = parseInt(( FH / h ) * w) + 'px';
 					_this.eleimg.style.backgroundSize = parseInt(( FH / h ) * w) + 'px' + parseInt(FH) + 'px';
+				}else{
+					let minwh = parseInt(Math.min(FW*1,FH*1));
+					_this.ele.style.height = minwh + 'px';
+					_this.ele.style.width = minwh + 'px';
+					_this.eleimg.style.backgroundSize = minwh + 'px ' + minwh + 'px';
 				}
 				_this.imgOrginWidth = w;
 				_this.imgOrginHeight = h;
