@@ -22,8 +22,8 @@
     <div id="clipping-container"></div>
     <img id="previewImg" src="" alt="" class="previewImg">
 
-    <!-- <script src="croptool.js"></script> -->
-    <script src="croptool.min.js"></script>
+    <script src="croptool.js"></script>
+    <!-- <script src="croptool.min.js"></script> -->
     <script type="text/javascript">
         function chooseImg(event){
             var files = event.files || event.dataTransfer.files,
@@ -33,7 +33,7 @@
                 dragBoxClass: 'block',  //裁剪框类名 
                 clipRadio: 1 / 1,       //裁剪比例 传0或空或不传等于不设置比例
                 cornerColor: '#f00',    //剪裁框颜色 默认#39f,
-                maxWidth: 300,
+                maxWidth: 3000,
                 //图片文件
                 encode: 'base64',       // 支持 base64、blob、file
                 type: 'png',            //保存类型
@@ -41,6 +41,8 @@
                 quality: 0.9,           //导出图片的质量
                 //裁剪完成
                 onDone: function (e) {
+                    console.log(e);
+                    //return false;
                     document.getElementById('previewImg').src = e;
                 },
                 onCancel: function(){

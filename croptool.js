@@ -430,15 +430,15 @@
 						break;
 					case 'blob':
 						canvas.toBlob(function (blob) {
-							_this.options.onDone(blob);
+							_this.opt.onDone(blob);
 						}, 'image/' + this.opt.type);
 						break;
 					case 'file':
 						canvas.toBlob(function (blob) {
-							var file = new window.File([blob], _this.options.name, {
-								type: 'image/' + _this.options.type
+							var file = new window.File([blob], _this.opt.name, {
+								type: 'image/' + _this.opt.type
 							});
-							_this.options.onDone(file);
+							_this.opt.onDone(file);
 						}, 'image/' + this.opt.type);
 						break;
 					default:
