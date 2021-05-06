@@ -412,13 +412,19 @@
 			img.height = (img.height * zoomRadio).toFixed(2) * 1;
 			img.top = (img.top * zoomRadio).toFixed(2) * 1;
 			img.left = (img.left * zoomRadio).toFixed(2) * 1;
-			var canvas = document.createElement('canvas');
+			var canvas = document.createElement('canvas'),
+				dw = img.width,
+				dh = img.height;
 			canvas.width = img.width;
 			canvas.height = img.height;
 			var ctx = canvas.getContext('2d');
 			ctx.fillStyle = '#fff';
 			ctx.fillRect(0, 0, canvas.width, canvas.height);
-			ctx.drawImage(this.img, img.left, img.top, img.width, img.height, 0, 0, img.width, img.height);
+			if(_this.opt.quality != 1){
+				dw = img.width * _this.opt.quality;
+				dh = img.height * _this.opt.quality;
+			}
+			ctx.drawImage(this.img, img.left, img.top, img.width, img.height, 0, 0, dw, dh);
 			if (this.opt.onDone) {
 				let container = this.getElement('#clipping-container');
 				container.removeChild(container.childNodes[0]);
