@@ -9,14 +9,20 @@ Web side image clipping component (JS, no dependencies)
 <script src="croptool.min.js"></script>
 <script>
     window.clip = new Clip({
-        dragBoxClass: 'block',
-        clipRadio: 4 / 3,  
-        cornerColor: '#f00',  
-        maxWidth: 300,
-        encode: 'base64',  
-        type: 'png',   
-        name: 'rtest',  
-        quality: 0.9, 
+        dragBoxClass: 'block',  //裁剪框类名 
+        clipRadio: 1 / 1,       //裁剪比例  宽/高  传0或空或不传等于不设置比例
+        //单位px  仅为裁剪框的宽高  不等同裁剪后最终图片宽高
+        initialHeight: 100,				//裁剪框初始高度
+        initialWidth: 100,				//裁剪框初始宽度
+        minHeight: 100,					//裁剪框最小高度
+        minWidth: 100,					//裁剪框最小宽度
+        maxWidth: 0,					//裁剪框最大宽度  不会大于裁剪区域宽度
+        maxHeight: 0,					//裁剪框最大高度  不会大于裁剪区域高度
+        cornerColor: '#39f',			//裁剪框颜色
+        encode: 'base64',				//文件类型
+        type: 'png',					//保存图片类型
+        name: 'img',					//文件名字
+        quality: 1,					    //压缩质量
         onDone: function (e) {
             //Finish clipping
             document.getElementById('previewImg').src = e;
